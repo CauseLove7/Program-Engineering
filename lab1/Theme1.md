@@ -17,6 +17,7 @@
 | Задание 10 | + |
 | Задание 11 | + |
 | Задание 12 | + |
+| Задание 13 | + |
 
 Работу проверили:
 - к.э.н., доцент Панов М.А.
@@ -32,6 +33,7 @@
 Задание 10![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/8f3db989-2619-42a2-bd34-b4fa3c45fdd6)
 Задание 11![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/74d28b97-4773-4a2c-9b47-355888ac2ed8)
 Задание 12![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/ea3722d7-6f6f-42be-9b46-548dd952314b)
+Задание 13![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/d221f778-8d4f-4282-b221-b2fbf01d6965)
 
 
 
