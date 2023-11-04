@@ -20,7 +20,6 @@
 - к.э.н., доцент Панов М.А.
 ## Лабораторная работа №1
 ## Задание №1
-![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/c4c9e35c-3e15-42c8-a33d-06814b0b9667)
 ####Выполнение:
 ```python
 1.set_1 = {'White,Red,Black,Pink'}
