@@ -20,14 +20,14 @@
 - к.э.н., доцент Панов М.А.
 ## Лабораторная работа №1
 ## Задание №1
-####Выполнение:
+#### Выполнение:
 ```python
 1.set_1 = {'White,Red,Black,Pink'}
   set_2 = {'Red,Green,Black,Blue/'}
 
 print(set_1 - set_2)
 ```
-####Результат:
+#### Результат:
 1.![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/766d4b4c-7e70-4356-9950-489b0507bc2b)
 
 2. С Разными повторениями
@@ -45,8 +45,8 @@ set_1 = {'White,Red,Black,Pink,Green,Red,Red'}
 set_2 = {'Red,Green,Black,Blue,Red,Red'}
 print("3",set_1 - set_2)
 ```
-Результат:
+#### Результат:
 ![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/a693847e-c3d6-4dc1-8ece-40293af58c42)
 
-Задание №2
+## Задание №2
 
