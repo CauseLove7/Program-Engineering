@@ -118,7 +118,7 @@ if __name__ == "__main__":
 Данная программа позволяет упростить введение книги учета, с добавлением нового файла, но в самом коде(консоли ничего сохранятся не будет, поэтому мы создаем отдельный файл) Пример сохраненного файла. Название файла вы придумываете сами в моем случае это test.txt
 ![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/ecaedfce-6761-42ed-969a-e654d5424e0d)
 ## Задание №3
-### Статистика по тексту
+### Статистика по тексту.
 #### Выполнение:
 ```python
 def calculate_statistics(file_path):
@@ -153,22 +153,74 @@ if __name__ == "__main__":
 Пример файла: 
 ![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/e43ebe61-f0b5-4a54-a414-70ec9bbf0820)
 ## Задание №4 
-### 
+### Запрещенные слова.
 #### Выполнение:
 ```python
+if __name__ == "__main__":
+    import re
 
+    def load_censor_words(file_path):
+        with open(file_path, 'r', encoding='utf-8') as file:
+            censor_words = [word.strip().lower() for word in file.readlines()]
+        return censor_words
+
+    def censor_text(text, forbidden_words):
+        for word in forbidden_words:
+
+            text = re.sub(rf'\b{re.escape(word)}\b', '*' * len(word), text, flags=re.IGNORECASE)
+        return text
+
+
+    if __name__ == "__main__":
+        forbidden_words = load_censor_words('C:/Users\Saharok\Program-Engineering\Lab7\input.txt') 
+        sentence = input("Введите предложение: ")
+
+        censored_sentence = censor_text(sentence, forbidden_words)
+
+        print("Исходное предложение:", sentence)
+        print("Предложение с замененными запрещенными словами:", censored_sentence)
 ```
 #### Результат:
-
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/8b86b860-caa7-4d47-966c-efeba147cfbf)
 #### Вывод: 
-
+В своем созданном файле помещаем запрещенное слово,которое программа должна будет вывести в консоли в состоянии ****. Прмиер файла:
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/4ab26416-36cf-4708-982b-9f2c70ad2030)
 ## Задание №5
-### 
+### Своя задача
 #### Выполнение:
 ```python
+from collections import Counter
 
+def analyze_logs(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            logs = file.readlines()
+
+        events = [log.split('-')[-1].strip() for log in logs]
+
+        event_counts = Counter(events)
+
+        return event_counts
+
+    except FileNotFoundError:
+        return None
+
+if __name__ == "__main__":
+    file_path = 'C:/Users\Saharok\Program-Engineering\Lab7\log.txt'
+
+    result = analyze_logs(file_path)
+
+    if result:
+        print("Статистика событий в логах:")
+        for event, count in result.items():
+            print(f"{event}: {count} раз")
+    else:
+        print(f"Файл '{file_path}' не найден.")
 ```
 #### Результат:
-
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/dcbc44b4-1513-4537-af56-9f6dabf5eb7f)
 #### Вывод: 
+С помощью данной программы мы можем отсматривать своих сотрудников/клиентов, сколько раз человек заходил в сеть. Пример файла:
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/e2fd8070-4b53-41ba-9066-e1f1b4730567)
 
+## Общий вывод: В данной теме я изучил важные темы в изучении языка Python. Создание и работа с файлами. Очень нужная тема для создания игр, ботов или прочего. Изучение работы с файлами позволило мне создать программы, способные читать и записывать текстовые данные.
