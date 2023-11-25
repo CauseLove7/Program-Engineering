@@ -127,7 +127,20 @@ print(result2)
 ![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/2d6debd0-5366-4800-be1b-33cc30ebc447)
 ## Самостоятельная работа №1
 ## Задание №1
-### Самостоятельно придумать класс
+### Самостоятельно придумать класс.
+#### Выполнение:
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+```
+#### Результат:
+
+#### Вывод:
+
+## Задание №2
+### Самостоятельно придумать класс и добавить атрибуты.
 #### Выполнение:
 ```python
 class Person:
@@ -138,29 +151,16 @@ class Person:
     def introduce(self):
         print(f"Hello, my name is {self.name} and I am {self.age} years old.")
 
+person = Person("Maxim", 20)
 
-# Создаем объект
-person = Person("Alice", 25)
-
-# Вызываем метод introduce
 person.introduce()
 ```
 #### Результат:
 
 #### Вывод:
 
-## Задание №2
-### Самостоятельно придумать класс
-#### Выполнение:
-```python
-
-```
-#### Результат:
-
-#### Вывод:
-
 ## Задание №3
-### Самостоятельно придумать класс
+### Реализация наследования в ранее написанном коде
 #### Выполнение:
 ```python
 
