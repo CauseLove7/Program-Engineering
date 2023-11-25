@@ -130,7 +130,20 @@ print(result2)
 ### Самостоятельно придумать класс
 #### Выполнение:
 ```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
 
+    def introduce(self):
+        print(f"Hello, my name is {self.name} and I am {self.age} years old.")
+
+
+# Создаем объект
+person = Person("Alice", 25)
+
+# Вызываем метод introduce
+person.introduce()
 ```
 #### Результат:
 
