@@ -166,29 +166,45 @@ person.introduce()
 ```python
 class Person:
     def __init__(self, name, age):
-        self.name = name
-        self.age = age
+        self._name = name
+        self._age = age
+
+    def get_name(self):
+        return self._name
+
+    def get_age(self):
+        return self._age
 
     def introduce(self):
-        print(f"My name is {self.name}")
-        print(f"I'm {self.age} old")
+        print(f"My name is {self._name}")
+        print(f"I'm {self._age} years old")
 
-person = Person("Maxim", 20)
 
 class Employee(Person):
     def __init__(self, name, age, position):
         super().__init__(name, age)
-        self.position = position
+        self._position = position
+
+    def get_position(self):
+        return self._position
 
     def introduce(self):
-        print(f"Hello, my name is {self.name}")
-        print(f"I'm {self.age} years old")
-        print(f"I work as a {self.position}")
+        super().introduce()
+        print(f"I work as a {self._position}")
+
+
+# Создаем объекты
 person = Person("Maxim", 25)
 employee = Employee("Dima", 99, "Software Engineer")
 
+# Вызываем методы для получения данных
+print(person.get_name())  # Вывод: Maxim
+print(employee.get_position())  # Вывод: Software Engineer
+
+# Вызываем методы introduce для обоих объектов
 person.introduce()
 employee.introduce()
+
 ```
 #### Результат:
 ![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/b9f2cb2f-9d87-4e86-994f-27883f695cb7)
