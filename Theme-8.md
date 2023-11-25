@@ -248,7 +248,59 @@ employee.introduce()
 ### Самостоятельно придумать класс
 #### Выполнение:
 ```python
+class Person:
+    def __init__(self, name, age):
+        self._name = name
+        self._age = age
 
+    def get_name(self):
+        return self._name
+
+    def get_age(self):
+        return self._age
+
+    def introduce(self):
+        print(f"My name is {self._name}")
+        print(f"I'm {self._age} years old")
+
+
+class Employee(Person):
+    def __init__(self, name, age, position):
+        super().__init__(name, age)
+        self._position = position
+
+    def get_position(self):
+        return self._position
+
+    def introduce(self):
+        super().introduce()
+        print(f"I work as a {self._position}")
+
+
+class Student(Person):
+    def __init__(self, name, age, major):
+        super().__init__(name, age)
+        self._major = major
+
+    def get_major(self):
+        return self._major
+
+    def introduce(self):
+        super().introduce()
+        print(f"I am majoring in {self._major}")
+
+
+# Создаем объекты
+person = Person("Maxim", 25)
+employee = Employee("Dima", 30, "Software Engineer")
+student = Student("Anna", 20, "Computer Science")
+
+# Вызываем методы introduce для каждого объекта
+person.introduce()
+print()
+employee.introduce()
+print()
+student.introduce()
 ```
 #### Результат:
 
