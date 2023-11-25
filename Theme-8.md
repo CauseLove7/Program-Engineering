@@ -227,25 +227,21 @@ class Employee(Person):
         super().introduce()
         print(f"I work as a {self._position}")
 
-
-# Создаем объекты
 person = Person("Maxim", 25)
 employee = Employee("Dima", 99, "Software Engineer")
 
-# Вызываем методы для получения данных
-print(person.get_name())  # Вывод: Maxim
-print(employee.get_position())  # Вывод: Software Engineer
+print(person.get_name()) 
+print(employee.get_position()) 
 
-# Вызываем методы introduce для обоих объектов
 person.introduce()
 employee.introduce()
 ```
 #### Результат:
-
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/ba8cd1a2-cc8b-489e-9669-96b22e8e126c)
 #### Вывод:
-
+С помощью инкпасуляции атрибуты name,age, position - стали закрытыми. И с помощью метода get мы получаем доступ к данным. Что нам и нужно.
 ## Задание №5
-### Самостоятельно придумать класс
+### Реализация полиморфизма
 #### Выполнение:
 ```python
 class Person:
@@ -289,13 +285,10 @@ class Student(Person):
         super().introduce()
         print(f"I am majoring in {self._major}")
 
-
-# Создаем объекты
 person = Person("Maxim", 25)
-employee = Employee("Dima", 30, "Software Engineer")
-student = Student("Anna", 20, "Computer Science")
+employee = Employee("Dima", 99, "Software Engineer")
+student = Student("Vova", 20, "Computer Science")
 
-# Вызываем методы introduce для каждого объекта
 person.introduce()
 print()
 employee.introduce()
@@ -303,5 +296,6 @@ print()
 student.introduce()
 ```
 #### Результат:
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/ea9c1517-2400-4cb9-aec5-2e1f09f67704)
 
 #### Вывод:
