@@ -164,23 +164,34 @@ person.introduce()
 ### Реализация наследования в ранее написанном коде
 #### Выполнение:
 ```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def introduce(self):
+        print(f"My name is {self.name}")
+        print(f"I'm {self.age} old")
+
+person = Person("Maxim", 20)
+
 class Employee(Person):
     def __init__(self, name, age, position):
         super().__init__(name, age)
         self.position = position
 
     def introduce(self):
-        print(f"Hello, my name is {self.name}, I am {self.age} years old, and I work as a {self.position}.")
+        print(f"Hello, my name is {self.name}")
+        print(f"I'm {self.age} years old")
+        print(f"I work as a {self.position}")
+person = Person("Maxim", 25)
+employee = Employee("Dima", 99, "Software Engineer")
 
-# Создаем объекты
-person = Person("Alice", 25)
-employee = Employee("Bob", 30, "Software Engineer")
-
-# Вызываем метод introduce для обоих объектов
 person.introduce()
 employee.introduce()
 ```
 #### Результат:
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/b9f2cb2f-9d87-4e86-994f-27883f695cb7)
 
 #### Вывод:
 
