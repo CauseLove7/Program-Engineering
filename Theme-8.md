@@ -26,8 +26,7 @@ class Car:
 myCar = Car("Nissan", "GTR")
 ```
 #### Результат:
-
-
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/8f883401-3d23-4110-a397-9f1cfe3cb03e)
 ## Задание №2
 ### Дополнение кода из первого задания + атрибуты.
 #### Выполнение:
@@ -39,11 +38,11 @@ class Car:
     def drive(self):
         print(f"Driving the {self.make} {self.model}")
 
-myCar = Car("Toyota", "Mazda")
+myCar = Car("Nissan", "GTR")
 myCar.drive()
 ```
 #### Результат:
-
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/dc28656e-4e53-4193-93d2-dbab303752ab)
 ## Задание №3
 ### Создание класса ElectricCar.
 #### Выполнение
@@ -72,7 +71,7 @@ my_electric_car.drive()
 my_electric_car.charge()
 ```
 #### Результат:
-
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/2437b477-cdd9-48d5-9763-6a093c5c89fb)
 ## Задание №4
 ### Реализуйте инкапсуляцию для класса, созданного в первом задании.
 #### Выполнение:
@@ -90,8 +89,7 @@ print(myCar.make)
 myCar.drive()
 ```
 #### Результат:
-
-
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/bf10c5b0-cee0-4953-ad85-810d5f3732a4)
 ## Задание №5
 ### Реализация полиморфизма.
 #### Выполнение:
@@ -126,5 +124,6 @@ print(result1)
 print(result2)
 ```
 #### Результат:
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/2d6debd0-5366-4800-be1b-33cc30ebc447)
 
 
