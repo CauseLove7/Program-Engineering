@@ -136,9 +136,9 @@ class Person:
         self.age = age
 ```
 #### Результат:
-
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/5339e330-d181-4d97-98fd-3c0ef53db8cb)
 #### Вывод:
-
+Я решил написать простой класс,который будет выдавать имя человека и возраст.
 ## Задание №2
 ### Самостоятельно придумать класс и добавить атрибуты.
 #### Выполнение:
@@ -149,16 +149,17 @@ class Person:
         self.age = age
 
     def introduce(self):
-        print(f"Hello, my name is {self.name} and I am {self.age} years old.")
+        print(f"My name is {self.name}")
+        print(f"I'm {self.age} old")
 
 person = Person("Maxim", 20)
 
 person.introduce()
 ```
 #### Результат:
-
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/35c534eb-4241-4e28-8e19-429b6c4b81ee)
 #### Вывод:
-
+К первоначальному коду добавились строки, которые помогут выводить имя человека и возраст строка под именем "Person"
 ## Задание №3
 ### Реализация наследования в ранее написанном коде
 #### Выполнение:
