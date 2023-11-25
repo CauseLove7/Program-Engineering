@@ -166,6 +166,41 @@ person.introduce()
 ```python
 class Person:
     def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def introduce(self):
+        print(f"My name is {self.name}")
+        print(f"I'm {self.age} old")
+
+person = Person("Maxim", 20)
+
+class Employee(Person):
+    def __init__(self, name, age, position):
+        super().__init__(name, age)
+        self.position = position
+
+    def introduce(self):
+        print(f"Hello, my name is {self.name}")
+        print(f"I'm {self.age} years old")
+        print(f"I work as a {self.position}")
+person = Person("Maxim", 25)
+employee = Employee("Dima", 99, "Software Engineer")
+
+person.introduce()
+employee.introduce()
+```
+#### Результат:
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/b9f2cb2f-9d87-4e86-994f-27883f695cb7)
+
+#### Вывод:
+В данном коде было использование наследование в строках person.introduce(), employee.introduce(). Наследование помогло расширить код. Теперь мы можем выводить информацию о нескольких людях, что гораздно удобнее нежели мы будем расписывать на каждого человека.
+## Задание №4
+### Самостоятельно придумать класс
+#### Выполнение:
+```python
+class Person:
+    def __init__(self, name, age):
         self._name = name
         self._age = age
 
@@ -199,55 +234,6 @@ employee = Employee("Dima", 99, "Software Engineer")
 
 # Вызываем методы для получения данных
 print(person.get_name())  # Вывод: Maxim
-print(employee.get_position())  # Вывод: Software Engineer
-
-# Вызываем методы introduce для обоих объектов
-person.introduce()
-employee.introduce()
-
-```
-#### Результат:
-![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/b9f2cb2f-9d87-4e86-994f-27883f695cb7)
-
-#### Вывод:
-В данном коде было использование наследование в строках person.introduce(), employee.introduce(). Наследование помогло расширить код. Теперь мы можем выводить информацию о нескольких людях, что гораздно удобнее нежели мы будем расписывать на каждого человека.
-## Задание №4
-### Самостоятельно придумать класс
-#### Выполнение:
-```python
-class Person:
-    def __init__(self, name, age):
-        self._name = name
-        self._age = age
-
-    def get_name(self):
-        return self._name
-
-    def get_age(self):
-        return self._age
-
-    def introduce(self):
-        print(f"Hello, my name is {self._name} and I am {self._age} years old.")
-
-
-class Employee(Person):
-    def __init__(self, name, age, position):
-        super().__init__(name, age)
-        self._position = position
-
-    def get_position(self):
-        return self._position
-
-    def introduce(self):
-        print(f"Hello, my name is {self.get_name()}, I am {self.get_age()} years old, and I work as a {self._position}.")
-
-
-# Создаем объекты
-person = Person("Alice", 25)
-employee = Employee("Bob", 30, "Software Engineer")
-
-# Вызываем методы для получения данных
-print(person.get_name())  # Вывод: Alice
 print(employee.get_position())  # Вывод: Software Engineer
 
 # Вызываем методы introduce для обоих объектов
