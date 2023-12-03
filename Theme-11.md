@@ -1,5 +1,5 @@
-# Тема 11. .
-### Отчет по Теме #10 выполнил:
+# Тема 11. Декораторы и исключения.
+### Отчет по Теме #11 выполнил:
 - Козлов Максим Игоревич
 - ПИЭ-21-2
 
@@ -7,349 +7,125 @@
 | ------ | ------ | ------ |
 | Задание 1 | + | + |
 | Задание 2 | + | + |
-| Задание 3 | + | + |
-| Задание 4 | + | + |
-| Задание 5 | + | + |
+| Задание 3 | + | - |
+| Задание 4 | + | - |
+| Задание 5 | + | - |
 
 Работу проверили:
 - к.э.н., доцент Панов М.А.
 
 ## Лабораторная работа 
-## Задание №1 Числа Фибоначчи.
+## Задание №1 Простой итератор.
 #### Выполнение:
 ```python
-from functools import lru_cache
-
-@lru_cache
-def fib(n):
-    return n if n <= 1 else fib(n - 1) + fib(n - 2)
-
-result_without_cache = fib(100)
-print(f"Без декоратора: {result_without_cache}")
-
-result_with_cache = fib(100)
-print(f"С декоратором: {result_with_cache}")
+numbers = [0, 1, 2, 3, 4, 5]
+for item in numbers:
+    print(item)
 ```
 #### Результат:
-![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/998979c8-5b7a-4ff3-92b2-1cc56ebec0ae)
-## Задание №2 Илья - программист.
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/4016909c-295d-42ee-9e11-e019035a5102)
+## Задание №2 Итератор с гибкой настройкой.
 #### Выполнение:
 ```python
-def validate_user_data(x):
-    def wrapper(name, age, *args, **kwargs):
-        if 0 < age < 130:
-            return x(name, age, *args, **kwargs)
-        else:
-            print("Ошибка: Некорректный возраст")
-    return wrapper
-@validate_user_data
-def print_user_data(name, age):
-    print(f"Имя: {name}, Возраст: {age}")
+class CountDown:
+    def __init__(self, start):
+        self.count = start + 1
 
-name = "Илья"
-age = 17
-print_user_data(name, age)
+    def __iter__(self):
+        return self
 
-invalid_age = 150
-print_user_data(name, invalid_age)
+    def __next__(self):
+        self.count -= 1
+        if self.count < 0:
+            raise StopIteration
+        return self.count
 
+if __name__ == '__main__':
+    counter = CountDown(5)
+    for i in counter:
+        print(i)
 ```
 #### Результат:
-![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/c20684da-6950-462f-bae5-a074d958db37)
-## Задание №3 Недохакер и сайт.
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/13ba2c07-993e-435b-bf0c-38749e9a879e)
+## Задание №3 Генератор списка.
 #### Выполнение:
 ```python
-def validate_user_data(func):
-    def wrapper(name, age, *args, **kwargs):
-        try:
-            age = int(age)
-        except ValueError:
-            print("Ошибка: Некорректный тип данных для возраста. Введите целое число.")
-            return
+a = [i ** 2 for i in range(1, 5)]
 
-        try:
-            if 0 < age < 100:
-                func(name, age, *args, **kwargs)
-            else:
-                print("Ошибка: Некорректный возраст")
-        except Exception as e:
-            print(f"Произошла ошибка: {e}")
-        finally:
-            print("Завершение функции")
+print('a - ', a)
+for i in a:
+    print(i)
 
-    return wrapper
-
-@validate_user_data
-def print_user_data(name, age):
-    print(f"Имя: {name}, Возраст: {age}")
-
-name = "Илья"
-valid_age = 17
-invalid_age = "abc"
-
-print_user_data(name, valid_age)
-print_user_data(name, invalid_age)
-
+print ('iter(a) - ', iter(a))
+for i in a:
+    print(i)
 ```
 #### Результат:
-![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/139e87a2-dba2-433a-87c9-1d8be33e1ac1)
-## Задание №4 Успешная регистрация.
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/2024b0b5-154a-40a6-a363-abeadbeb7ea7)
+## Задание №4 Выражение генераторы.
 #### Выполнение:
 ```python
-class NameTooLongError(Exception):
-    pass
-
-def validate_user_data(func):
-    def wrapper(name, age, *args, **kwargs):
-        user_name = input("Введите ваше имя: ")
-        try:
-            age = int(age)
-        except ValueError:
-            print("Ошибка: Некорректный тип данных для возраста. Введите целое число.")
-            return
-
-        try:
-            if len(name) > 10:
-                raise NameTooLongError("Ошибка: Имя пользователя слишком длинное")
-            elif 0 < age < 100:
-                func(name, age, *args, **kwargs)
-                print("Успешная регистрация")
-            else:
-                print("Ошибка: Некорректный возраст")
-        except NameTooLongError as e:
-            print(e)
-        except Exception as e:
-            print(f"Произошла ошибка: {e}")
-        finally:
-            print("Завершение функции")
-
-    return wrapper
-
-@validate_user_data
-def print_user_data(name, age):
-    print(f"Имя: {name}, Возраст: {age}")
-
-valid_name = "Илья"
-invalid_name = "ОченьДлинноеИмя"
-
-valid_age = 17
-
-print_user_data(valid_name, valid_age)
-print_user_data(invalid_name, valid_age)
-
+b = (i ** 2 for i in range(1, 5))
+print(b)
+print('first')
+for i in b:
+    print(i)
+print('second')
+for i in b:
+    print(i)
 ```
 #### Результат:
-![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/f12d04fe-9eca-4403-b9ec-3cc6dd35233e)
-
-## Задание №5 Числа Фибоначчи.
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/1c836b54-174e-497f-82c8-76b777e5ed92)
+## Задание №5 Счетчик с yield.
 #### Выполнение:
 ```python
-class NameTooLongError(Exception):
-    pass
+def countdown(count):
+    while count >= 0:
+        yield count
+        count -= 1
 
-def simple_logger_decorator(func):
-    def wrapper(*args, **kwargs):
-        try:
-            result = func(*args, **kwargs)
-            print(f"Результат выполнения функции {func.__name__}: {result}")
-            return result
-        except Exception as e:
-            print(f"Произошла ошибка: {e}")
-        finally:
-            print("Завершение функции")
-
-    return wrapper
-
-@simple_logger_decorator
-def validate_user_data(name, age, *args, **kwargs):
-    user_name = input("Введите ваше имя: ")
-    try:
-        age = int(age)
-    except ValueError:
-        print("Ошибка: Некорректный тип данных для возраста. Введите целое число.")
-        return
-    try:
-        if len(name) > 10:
-            raise NameTooLongError("Ошибка: Имя пользователя слишком длинное")
-        elif 0 < age < 100:
-            print_user_data(name, age, *args, **kwargs)
-            print("Успешная регистрация")
-        else:
-            print("Ошибка: Некорректный возраст")
-    except NameTooLongError as e:
-        print(e)
-
-@simple_logger_decorator
-def print_user_data(name, age, *args, **kwargs):
-    print(f"Имя: {name}, Возраст: {age}")
-
-valid_name = "Илья"
-invalid_name = "ОченьДлинноеИмя"
-valid_age = 17
-
-validate_user_data(valid_name, valid_age)
-validate_user_data(invalid_name, valid_age)
-
+if __name__ == '__main__':
+    counter = countdown(5)
+    for i in counter:
+        print(i)
 ```
 #### Результат:
-![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/622c49cc-d1bd-4b12-a6ee-aefc94f0c83b)
-
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/67d2197a-4d7f-4a94-8722-1d199d74600d)
 ## Самостоятельная работа 
-## Задание №1 Вова. Спорт.программирование.
+## Задание №1 Числа Фибоначчи
 #### Выполнение:
 ```python
-import time
-def timing_decorator(func):
-    def wrapper(*args, **kwargs):
-        start_time = time.time()
-        result = func(*args, **kwargs)
-        end_time = time.time()
-        execution_time = end_time - start_time
-        print(f"Время выполнения функции {func.__name__}: {execution_time} секунд")
-        return result
+def numfib(n):
+    a, b = 1, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b
 
-    return wrapper
-
-@timing_decorator
-def timescore():
-    for _ in range(1000000):
-        pass
-
-timescore()
+fibonacci_sequence = list(numfib(200))
+print(fibonacci_sequence)
 ```
 #### Результат:
-![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/9bb29fff-5a12-4154-94b9-d79613a0e5fd)
-### Вывод:
-Благодаря этому коду, можно подробно посмотреть сколько выполняется самая простая программа, например: Функция wrapper который измеряет время timing_decorator в функции, которую timing_decorator принимает - func.
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/5d580e81-d82c-454d-b99f-4021d22ff8bf)
+### Вывод: 
+Числа Фибоначчи генерируется при помощи nubfib, функция yield - для возвращения чисел генератора. fibonacci_sequence - пример использования чисел. print - вывод наших чисел.
 ## Задание №2
-#### Выполнение:
 ```python
-def read_file_content(file_path):
-    try:
-        with open(file_path, 'r') as file:
-            content = file.read()
-            if not content:
-                raise ValueError("Файл пустой")
-            return content
-    except FileNotFoundError:
-        print(f"Ошибка: Файл '{file_path}' не найден")
-    except ValueError as ve:
-        print(f"Ошибка: {ve}")
-    except Exception as e:
-        print(f"Произошла ошибка при чтении файла: {e}")
+def numfib(n):
+    a, b = 1, 1
+    with open("fib.txt", "w") as file:
+        for _ in range(n):
+            file.write(f"{a}\n")
+            yield a
+            a, b = b, a + b
 
-empty_file_path = 'empty_file.txt'
-open(empty_file_path, 'w').close()
+# Пример использвоания 200 чисел в файл
+for number in numfib(200):
+    pass  # Проход по числам,для их записи
 
-non_empty_file_path = 'non_empty_file.txt'
-with open(non_empty_file_path, 'w') as file:
-    file.write("Это какие-то данные в файле")
-
-print("Содержимое пустого файла:")
-read_file_content(empty_file_path)
-
-print("\nСодержимое файла с данными:")
-read_file_content(non_empty_file_path)
+print("Первые 10 чисел Фибоначчи:", list(numfib(10)))
 ```
 #### Результат:
-![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/2fb64824-cb53-4f85-ade2-fb88c853fc40)
-### Вывод:
-Данный код позволяет создать,открыть уже созданный файл, и вывести информацию  в консоль из файла. Если файл пустой(данный скриншот) - мы получим ответ "Файл пустой". Если файл содержит в себе информацию, то получим информацию.
-## Задание №3 Сложение +2.
-#### Выполнение:
-```python
-def add_two_numbers():
-    try:
-        user_input = input("Введите число: ")
-        number = float(user_input)
-        result = 2 + number
-        print(f"Результат сложения: {result}")
-    except ValueError:
-        print("Ошибка: Неподходящий тип данных. Ожидалось число.")
-
-add_two_numbers()
-add_two_numbers()
-add_two_numbers()
-```
-#### Результат:
-![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/c26c2759-7b24-41e3-88b7-c5fef8af2496)
-
-### Вывод:
-Результатом данного кода соответствует введение пользователем числа, который поступает в код и начинается сумма чисел на 2. Имеются свои подвохи. Числа могут быть целыми, с плавающей точкой, отрицательными. Все остальное код будет выдавать за ошибку.
-## Задание №4
-#### Выполнение:
-```python
-class MyDecorator:#Класс декоратора
-    def __init__(self, func):
-        self.func = func
-
-    def __call__(self, *args, **kwargs):#Вызов декоратора и начало выполнения работы
-        print(f"Декоратор начал работу для функции {self.func.__name__}")
-        result = self.func(*args, **kwargs)
-        print(f"Декоратор завершил работу для функции {self.func.__name__}")
-        return result
-
-# Пример функций
-@MyDecorator
-def startengine(x):
-    return x * 2
-
-@MyDecorator
-def compliting(x):
-    return x ** 2
-#Результаты выполнения декораторов
-result_1 = startengine(5)
-result_2 = compliting(3)
-#Выведение результатов в консоль
-print(f"Результат умножения на 2: {result_1}")
-print(f"Результат возведения в квадрат: {result_2}")
-
-```
-#### Результат:
-![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/db6c1a38-33c1-40af-8a8f-0685c062170f)
-### Вывод:
-В коде есть пояснения.
-## Задание №5
-#### Выполнение:
-```python
-import time
-import random
-import math
-
-class ExecutionTimeDecorator:
-    def __init__(self, func):
-        self.func = func
-
-    def __call__(self, *args, **kwargs):
-        start_time = time.time()
-        result = self.func(*args, **kwargs)
-        end_time = time.time()
-        execution_time = end_time - start_time
-        print(f"Функция {self.func.__name__} выполнилась за {execution_time:.6f} секунд")
-        return result
-
-# Функция, которая генерирует случайное число
-@ExecutionTimeDecorator
-def Generator():
-    return random.randint(1, 100)
-
-# Функция, которая находит факториал числа
-@ExecutionTimeDecorator
-def Factorial():
-    return math.factorial(random.randint(1,5))
-
-# Пример использования декораторов
-random_result = Generator()
-factorial_result = Factorial()
-
-print(f"Случайное число: {random_result}")
-print(f"Факториал числа: {factorial_result}")
-
-
-```
-#### Результат:
-![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/a6c54f28-b5b9-4efa-8b28-7c13d61c9266)
-### Вывод:
-Генератор выводит случайное число, которое выводится в консоли. Также я написал код, чтобы факториал тоже брал из массива случайное числа и находил его факториал. Все это дело(для каждого!) имеется свой подсчет времени. Подсчет времени для вывода случайного числа и для факториала соответственно.
-## Общий вывод:
-Достаточно интересная тема Декораторов. Более подробно изучил момент облегчения кода. Сокращения в том числе. Декораторы позволяют более гибко изучать свои ошибки и более точно делить информацию на нужные группы и подгруппы.
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/8ff7891b-1f36-45b6-87e3-efd50823f0e6)
+### Вывод: 
+В коде есть небольшое описание новых строк. pass - пропуск чисел через генератор для последующей записи в файл. Цикл for number - Для прокрутки наших 200-ста чисел, которые есть в файле, часть из которых выпишется в консоль.
+## Общий вывод: Декораторы - гибкий и мощный механизм,который позволяет изменять функции или методы в коде. Также улучшает читаемость кода, гибкость кода и т.д.
