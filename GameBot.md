@@ -10,7 +10,10 @@
 Работу проверили:
 - к.э.н., доцент Панов М.А.
 
-
+## Задание №1
+### Создайте свой проект.
+#### Выполнение:
+```python
 import telebot
 from telebot import types
 
@@ -126,4 +129,6 @@ def reset_chat(call):
     bot.send_message(call.message.chat.id, "Переписка сброшена. Начните заново с команды /start")
 
 bot.polling(none_stop=True)
+```
 #### Результат:
+![image](https://github.com/CauseLove7/Program-Engineering/assets/145790904/59c58f75-8599-4c22-b684-0ce9c59bc29d)
