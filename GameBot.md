@@ -9,7 +9,9 @@
 
 Работу проверили:
 - к.э.н., доцент Панов М.А.
-- import telebot
+
+
+import telebot
 from telebot import types
 
 bot = telebot.TeleBot('6844637210:AAGMoWTfB6Klrb2Bh8n28irD0a-m80wNVEg')
